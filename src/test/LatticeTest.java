@@ -44,6 +44,15 @@ public class LatticeTest {
         assertEquals(12, a.getScore());
     }
 
+    @Test 
+    public void testpercentageSame(){
+        int[][] input = {{1, -1, 1},
+                        {1, -1, -1},
+                        {-1, 1, -1}};
+        a = new Lattice(input);
+        assertEquals(0.556, a.percentageSame(),1);
+    }
+
     @Test
     public void testNegativeLatticeSize(){
         Lattice b = new Lattice(0);

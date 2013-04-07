@@ -15,10 +15,13 @@ package src.main;
 import java.util.Random;
 
 public class Lattice{
-	int score;
-	int n;
-	Element[][] lattice;
-	Random rand;
+	private int score;
+	private int n;
+	private Element[][] lattice;
+	private Random rand;
+	private int totalElements;
+	private int numNegatives;
+	private int numPositives;
 
 
 	//Constructor to create a random lattice of dimension n
@@ -29,6 +32,9 @@ public class Lattice{
 		}
 		score = 0;
 		n = size;
+		totalElements = n*n;
+		numNegatives=0;
+		numPositives=0;
 		rand = new Random();
 		lattice = new Element[n][n];
 		//Initialize lattice with random elements
@@ -45,6 +51,9 @@ public class Lattice{
 	public Lattice(int[][] values){
 		score = 0;
 		n = values[0].length;
+		totalElements = n*n;
+		numNegatives=0;
+		numPositives=0;
 		lattice = new Element[n][n];
 		//Initialize lattice with random elements
 		for(int i = 0; i < n; i++){
@@ -71,7 +80,19 @@ public class Lattice{
 		return s.toString();
 	}
 
+	public double percentageSame(){
+		double neg = numNegatives/totalElements;
+		double pos = numPositives/totalElements;
+		if(neg > pos){
+			return neg;
+		}else{
+			return pos;
+		}
+	}
+
 	private void calculateEntireScore(){
+		numNegatives=0;
+		numPositives=0;
 		int total = 0;
 		for(int i = 0; i < n; i++){
 			for(int j = 0; j < n; j++){
@@ -79,6 +100,7 @@ public class Lattice{
 				total += lattice[i][j].getValue()*lattice[(i+1)%n][j].getValue() < 0 ? 0:1; //down
 				total += lattice[i][j].getValue()*lattice[i][(j-1+n)%n].getValue() < 0 ? 0:1; //left
 				total += lattice[i][j].getValue()*lattice[i][(j+1)%n].getValue() < 0 ? 0:1; //right
+				int trash = lattice[i][j].getValue() < 0 ? numNegatives++ : numPositives++;
 			}
 		}
 		score = total;
