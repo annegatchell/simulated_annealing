@@ -29,10 +29,12 @@ public class LatticeTest {
         
     }
 
+
     @Test
     public void testRandomLook(){
-        a = new Lattice(5);
+        a = new Lattice(5, "Random", false);
         System.out.println(a);
+        //a.closeFrame();
     }
 
     @Test 
@@ -40,13 +42,16 @@ public class LatticeTest {
         int[][] input = {{1, -1, 1},
                         {1, -1, -1},
                         {-1, 1, -1}};
-        a = new Lattice(input);
-        assertEquals(0.556, a.percentageSame(),1);
+        a = new Lattice(input, "%", false);
+        System.out.println(a.percentageSame());
+        assertEquals(0.556, a.percentageSame(),0.1);
+        //a.closeFrame();
     }
 
     @Test
     public void testNegativeLatticeSize(){
-        Lattice b = new Lattice(0);
+        Lattice b = new Lattice(0, "Negative size", false);
+        //b.closeFrame();
     }
     
     @Test
@@ -54,8 +59,9 @@ public class LatticeTest {
         int[][] input = {{1, -1, 1},
                         {1, -1, -1},
                         {-1, 1, -1}};
-        a = new Lattice(input);
-        assertEquals(12, a.getScore());
+        a = new Lattice(input, "score", false);
+        assertEquals(12, a.score());
+        //a.closeFrame();
     }
 
     @Test
@@ -63,11 +69,12 @@ public class LatticeTest {
         int[][] input = {{1, -1, 1},
                         {1, -1, -1},
                         {-1, 1, -1}};
-        a = new Lattice(input);
-        assertEquals(12, a.getScore());
+        a = new Lattice(input, "flip", false);
+        assertEquals(12, a.score());
         assertEquals(16, a.flip(0,1));
         assertEquals(12, a.flip(0,1));
         assertEquals(16, a.flip(0,1));
+       // a.closeFrame();
     }
 
     // @Test
