@@ -90,6 +90,45 @@ public class Lattice{
 		}
 	}
 
+	//Flips the state of the lattice element at i,j and returns
+	//the resulting score for the lattice
+	public int flip(int i, int j){
+		int oldScore = 0;
+		int newScore = 0;
+		int current = lattice[i][j].getValue();
+		System.out.println("current "+current);
+		if(current*lattice[(i-1+n)%n][j].getValue() < 0)
+			newScore+=2;
+		else oldScore+=2; //up
+		if(current*lattice[(i+1)%n][j].getValue() < 0)
+			newScore+=2;
+		else oldScore+=2; //down
+		if(current*lattice[i][(j-1+n)%n].getValue() < 0)
+			newScore+=2;
+		else oldScore+=2; //left
+		if(current*lattice[i][(j+1)%n].getValue() < 0)
+			newScore+=2;
+		else oldScore+=2; //right
+		//Perform flip
+		lattice[i][j].flip();
+		System.out.println("new "+lattice[i][j].getValue());
+		System.out.println("old score "+ oldScore + " new score "+newScore);
+		//Update score
+		score -= oldScore;
+		score += newScore;
+		//Change nums negative and positives
+		if(lattice[i][j].getValue() < 0){
+			numNegatives++;
+			numPositives--;
+		} else {
+			numNegatives--;
+			numPositives++;
+		}
+		
+		//Return score
+		return score;
+	}
+
 	private void calculateEntireScore(){
 		numNegatives=0;
 		numPositives=0;

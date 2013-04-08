@@ -35,15 +35,6 @@ public class LatticeTest {
         System.out.println(a);
     }
 
-    @Test
-    public void testArrayConstructor(){
-        int[][] input = {{1, -1, 1},
-                        {1, -1, -1},
-                        {-1, 1, -1}};
-        a = new Lattice(input);
-        assertEquals(12, a.getScore());
-    }
-
     @Test 
     public void testpercentageSame(){
         int[][] input = {{1, -1, 1},
@@ -60,13 +51,24 @@ public class LatticeTest {
     
     @Test
     public void testScore() {
-        
+        int[][] input = {{1, -1, 1},
+                        {1, -1, -1},
+                        {-1, 1, -1}};
+        a = new Lattice(input);
+        assertEquals(12, a.getScore());
     }
 
-    // @Test
-    // public void testFlip(){
-    
-    // }
+    @Test
+    public void testFlip(){
+        int[][] input = {{1, -1, 1},
+                        {1, -1, -1},
+                        {-1, 1, -1}};
+        a = new Lattice(input);
+        assertEquals(12, a.getScore());
+        assertEquals(16, a.flip(0,1));
+        assertEquals(12, a.flip(0,1));
+        assertEquals(16, a.flip(0,1));
+    }
 
     // @Test
     // public void testE(){

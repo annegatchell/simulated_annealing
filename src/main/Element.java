@@ -15,7 +15,9 @@ public class Element{
 	}
 
 	public void flip(){
-		value *= NEG;
+		if(value < 0){
+			value = POS;
+		} else value = NEG;
 	}
 
 	public int getValue(){
