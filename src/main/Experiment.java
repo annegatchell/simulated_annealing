@@ -1,5 +1,5 @@
 /*
-  Experiement.java
+  Experiment.java
 
   An experiment to run the Ising model simulated annealer
   for the parameters described in problem 5 of Problem Set

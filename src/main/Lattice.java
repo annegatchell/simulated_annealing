@@ -19,6 +19,9 @@
   the two sites are coupled (have same spin), J_{ij} = 1, and
   if they are not coupled, J_{ij} = 0.
 
+  The SCORE of the lattice is -E. It is convenient to use -E
+  since we are trying to maximize the score of a lattice.
+
   Neighbors are defined by the von Neumann neighborhood
   ("Hello.... Nnneumann")
   with periodic edge boundaries. Therefore, the lattice

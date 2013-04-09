@@ -61,7 +61,7 @@ public class SimulatedAnnealer{
   }
 
   public void anneal(boolean animate){
-    System.out.println("Initial Lattice, t = "+ t +", E = "+ l.score()
+    System.out.println("Initial Lattice, t = "+ t +", E = -"+ l.score()
           +", majority frac ="+l.percentageSame());
     snapshot1 = new Lattice(l, "Initial Lattice", true);
     snapshot1.setFrameLocation(0,0);
@@ -87,12 +87,13 @@ public class SimulatedAnnealer{
       } else if (prKeep >= flip){
         currentScore = proposedScore; //Accept - lower score
         rejects = 0;
+
       } else {
         rejects++;
         l.flip(i,j);          //Reject, flip bcack
       }
       if(!got80snapshot && l.percentageSame() >= 0.8){
-        System.out.println("80% Same Lattice, t = "+ t +", E = "
+        System.out.println("80% Same Lattice, t = "+ t +", E = -"
           + l.score()+", majority frac ="+l.percentageSame());
         snapshot80 = new Lattice(l, "80% Same", true);
         snapshot80.setFrameLocation(0,500);
@@ -106,7 +107,7 @@ public class SimulatedAnnealer{
         } catch (Exception ex){}
       }
     }
-    System.out.println("Final Arrangement, t = "+ t +", E = "+ 
+    System.out.println("Final Arrangement, t = "+ t +", E = -"+ 
           l.score()+", majority frac ="+l.percentageSame());
     snapshotFinal = new Lattice(l, "Final Arrangement",true);
     snapshotFinal.setFrameLocation(500,0);
